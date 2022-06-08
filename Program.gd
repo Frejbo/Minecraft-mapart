@@ -49,7 +49,7 @@ func unpack_colordata(path):
 
 
 func display_colors(colordata):
-	print("Starting display_colors")
+	
 	for row in colordata:
 		var HBox = HBoxContainer.new()
 		HBox.add_constant_override("separation", 1)
@@ -59,15 +59,33 @@ func display_colors(colordata):
 			# create panel of color
 			var panel = Panel.new()
 			var style = StyleBoxFlat.new()
-			style.bg_color = col
+			
+			# color convertion
+#			var map_color = Color(
+#				((col.r*255)*4*255/255),
+#				((col.g*255)*4*255/255),
+#				((col.b*255)*4*255/255),
+#				1
+#				)
+			
+			
+			var map_color = Color(
+				floor(col.r*255)/255,
+				floor(col.g*255)/255,
+				floor(col.b*255)/255,
+				1
+				)
+			
+			
+			
+			style.bg_color = map_color
+			
 			panel.add_stylebox_override("panel", style)
 			panel.rect_min_size = Vector2(7, 7)
 			HBox.add_child(panel)
 #			print(panel.get_stylebox("panel").bg_color)
 #			yield(get_tree(), "idle_frame")
-		yield(get_tree(), "idle_frame") # ta bort om den ska ladda snabbare men utan "animation".
-	
-	print($Control/VBoxContainer.get_child_count())
+#		yield(get_tree(), "idle_frame") # ta bort om den ska ladda snabbare men utan "animation".
 
 
 

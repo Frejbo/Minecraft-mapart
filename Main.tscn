@@ -66,13 +66,6 @@ dialog_text = "Bilden måste vara 128x128 pixlar, men den valda bilden är ...
 
 Försök igen?"
 
-[node name="Panel" type="Panel" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [connection signal="file_selected" from="Control/FileDialog" to="." method="_on_FileDialog_file_selected"]
 [connection signal="confirmed" from="Control/Not_128" to="." method="_on_ConfirmationDialog_confirmed"]
 [connection signal="popup_hide" from="Control/Not_128" to="." method="_on_ConfirmationDialog_popup_hide"]
