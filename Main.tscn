@@ -1,9 +1,26 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Program.gd" type="Script" id=1]
+[ext_resource path="res://Bakgrund.png" type="Texture" id=2]
+[ext_resource path="res://map_background.png" type="Texture" id=3]
+[ext_resource path="res://dropdown_arrow.png" type="Texture" id=4]
+[ext_resource path="res://dropdown_arrow_dropped.png" type="Texture" id=5]
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 1 )
+
+[node name="Bakgrund" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -12,18 +29,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
-grow_horizontal = 2
+[node name="Helpers" type="Control" parent="Control"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+anchor_right = 0.585
+anchor_bottom = 1.0
+margin_top = 4.0
+margin_right = 3.79993
+margin_bottom = 4.0
 grow_vertical = 2
-custom_constants/separation = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/CenterContainer"]
+margin_left = 563.0
+margin_top = 540.0
+margin_right = 563.0
+margin_bottom = 540.0
+
+[node name="MapBackground" type="Sprite" parent="Control/CenterContainer/MarginContainer"]
+visible = false
+modulate = Color( 1, 1, 1, 0.780392 )
+scale = Vector2( 15.46, 15.46 )
+texture = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+margin_left = 563.0
+margin_top = 540.0
+margin_right = 563.0
+margin_bottom = 540.0
+grow_vertical = 2
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -65,6 +107,38 @@ resizable = true
 dialog_text = "Bilden måste vara 128x128 pixlar, men den valda bilden är ...
 
 Försök igen?"
+
+[node name="Panel" type="Panel" parent="Control"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
+anchor_left = 0.642
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.640015
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scroll_list" type="VBoxContainer" parent="Control/ScrollContainer"]
+
+[node name="OptionButton" type="OptionButton" parent="."]
+margin_left = 217.0
+margin_top = 167.0
+margin_right = 250.0
+margin_bottom = 189.0
+custom_icons/arrow = ExtResource( 4 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 1 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="file_selected" from="Control/FileDialog" to="." method="_on_FileDialog_file_selected"]
 [connection signal="confirmed" from="Control/Not_128" to="." method="_on_ConfirmationDialog_confirmed"]
