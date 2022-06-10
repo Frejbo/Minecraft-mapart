@@ -89,11 +89,9 @@ func display_colors(colordata):
 
 
 func add_material_to_list(antal : int, material : String):
-	var text = str(antal) + " " + material.split(",", false)[0]
-#	material_list.append(text)
 	var label = load("res://Item.tscn").instance()
 	label.all_my_possible_materials = material
-	label.setup(text)
+	label.setup(antal, material.split(",", false))
 	$Control/ScrollContainer/Scroll_list.add_child(label)
 
 

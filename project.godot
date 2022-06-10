@@ -20,7 +20,7 @@ Globals="*res://Globals.gd"
 
 [debug]
 
-settings/fps/force_fps=30
+settings/fps/force_fps=60
 
 [display]
 
