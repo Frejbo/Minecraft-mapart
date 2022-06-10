@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/mangrove_sign.png-4b4d0d07dc7e3b1d4b80ecf41a01737a.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://minecraft textures/mangrove_sign.png"
+dest_files=[ "res://.import/mangrove_sign.png-4b4d0d07dc7e3b1d4b80ecf41a01737a.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

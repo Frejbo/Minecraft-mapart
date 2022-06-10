@@ -135,12 +135,3 @@ func add_material_to_list(antal : int, material : String):
 #			# draw line
 #
 #			# from = 
-
-
-
-
-func _input(event):
-	if event.is_action_pressed("scroll_up"):
-		print("up")
-		print(event.position)
-		

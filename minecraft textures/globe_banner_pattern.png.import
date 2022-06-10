@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/globe_banner_pattern.png-2ea674a77362fc30255325446c844083.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://minecraft textures/globe_banner_pattern.png"
+dest_files=[ "res://.import/globe_banner_pattern.png-2ea674a77362fc30255325446c844083.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
