@@ -1,7 +1,6 @@
 extends AspectRatioContainer
 var all_my_possible_materials : String
 
-var could_not_find = ""
 
 func setup(amount : int,item : Array):
 	$HBoxContainer/Label.text = str(amount) + " of "
@@ -24,9 +23,9 @@ func setup(amount : int,item : Array):
 		if not "(" in material:
 			if File.new().file_exists(path):
 				icon = load(path)
-			elif not path in could_not_find:
-				print("Kunde inte hitta " + path)
-				could_not_find = could_not_find+path
+			else:
+#				print("Kunde inte hitta " + path)
+				pass
 		
 		material = material.replace(";", ",")
 		if icon == null:

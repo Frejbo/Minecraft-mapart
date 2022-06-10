@@ -24,6 +24,8 @@ func _on_FileDialog_file_selected(path):
 	var colordata = unpack_colordata(path)
 	display_colors(colordata)
 	$Control/CenterContainer/MarginContainer/MapBackground.show()
+	yield(get_tree(), "idle_frame")
+	print($Control/CenterContainer/VBoxContainer.rect_size)
 #	draw_helpers()
 
 func _on_ConfirmationDialog_confirmed():
@@ -55,8 +57,9 @@ func unpack_colordata(path):
 var last_material = ""
 var index = 0
 func display_colors(colordata):
+	$loading_label.show()
 	$Control/CenterContainer/VBoxContainer.add_constant_override("separation", SEPARATION)
-	
+	var load_index = 0
 	for col in colordata:
 		var HBox = HBoxContainer.new()
 		HBox.add_constant_override("separation", SEPARATION)
@@ -84,8 +87,10 @@ func display_colors(colordata):
 				index = 0
 			index += 1
 #		yield(get_tree(), "idle_frame") # ta bort om den ska ladda snabbare men utan "animation".
-
-
+		load_index += 1
+		$loading_label.text = "Laddar: "+str(load_index)+"/128"
+		yield(get_tree(), "idle_frame")
+	$loading_label.hide()
 
 
 func add_material_to_list(antal : int, material : String):
