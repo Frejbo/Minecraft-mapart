@@ -63,6 +63,7 @@ var minecraft_map_colors = [
 	[Color(127, 167, 150), "Glow Lichen, Verdant Froglight"]
 ]# ersätt ; med , efter separation i kod
 
+var showed_temp = false
 
 func get_closest_color(rgb : Color):
 	var r = rgb.r
@@ -77,3 +78,32 @@ func get_closest_color(rgb : Color):
 		if color_diff < minimum[0]:
 			minimum = [color_diff, Color(color[0][0], color[0][1], color[0][2], color[0][3]), color[1]]
 	return [minimum[1], minimum[2]]
+
+
+
+
+
+func _ready():
+#	print(list_files_in_directory("res://"))
+#	print("\n----\n")
+#	print(list_files_in_directory("res://minecraft_textures/"))
+#	var dir = Directory.new()
+#	dir.list_dir_begin()
+#
+	pass
+func list_files_in_directory(path):
+	var files = []
+	var dir = Directory.new()
+	dir.open(path)
+	dir.list_dir_begin()
+
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+		elif not file.begins_with("."):
+			files.append(file)
+
+	dir.list_dir_end()
+
+	return files
