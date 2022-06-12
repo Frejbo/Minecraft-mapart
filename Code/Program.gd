@@ -73,20 +73,24 @@ func display_colors(colordata):
 			var style = StyleBoxFlat.new()
 			var map_color = row
 			var result = Globals.get_closest_color(map_color*255)
-			map_color = result[0]/255
-			map_color.a = 1
-			style.bg_color = map_color
+			var map_color1 = result[0][1]/255
+			var map_color2 = result[1][1]/255
+			var map_color3 = result[2][1]/255
+			map_color1.a = 1
+			map_color2.a = 1
+			map_color3.a = 1
+			style.bg_color = map_color1
 			
 			panel.add_stylebox_override("panel", style)
 			panel.rect_min_size = Vector2(6.5, 6.5) #7 passar
 			HBox.add_child(panel)
 
-			if last_material != result[1]:
+			if last_material != result[0][2]:
 				if index == 0:
-					last_material = result[1]
+					last_material = result[0][2]
 					continue
-				add_material_to_list(index, result[1])
-				last_material = result[1]
+				add_material_to_list(index, result[0][2] + ",- "+str(round(result[1][0]))+"% SKILLNAD:," + result[1][2] + ",- "+str(round(result[2][0]))+"% SKILLNAD:," + result[2][2])
+				last_material = result[0][2]
 				index = 0
 			index += 1
 #		yield(get_tree(), "idle_frame") # ta bort om den ska ladda snabbare men utan "animation".

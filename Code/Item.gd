@@ -21,6 +21,9 @@ func setup(amount : int,item : Array):
 		
 		var icon
 		var path = "res://minecraft_textures/"+icon_name+".png"
+		if ":" in icon_name:
+			path = "res://skillnad_ikon.png"
+		
 		if not "(" in material:
 			if ResourceLoader.exists(path):
 				icon = load(path)
@@ -33,6 +36,8 @@ func setup(amount : int,item : Array):
 			$HBoxContainer/OptionButton.add_item(material)
 		else:
 			$HBoxContainer/OptionButton.add_icon_item(icon, material)
+			if "SKILLNAD:" in material:
+				$HBoxContainer/OptionButton.set_item_disabled(material_index, true)
 		has_materials[material]=material_index
 		material_index += 1
 
