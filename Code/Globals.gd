@@ -63,47 +63,35 @@ var minecraft_map_colors = [
 	[Color(127, 167, 150), "Glow Lichen, Verdant Froglight"]
 ]# ersätt ; med , efter separation i kod
 
-var showed_temp = false
 
-func get_closest_color(rgb : Color):
+func get_closest_color(rgb : Color, same_color_allowed : bool = true):
 	var r = rgb.r
 	var g = rgb.g
 	var b = rgb.b
-	var minimum = [100, Color()]
+#	var minimum = [100.0, Color()]
+	
+	var color_diffs = []
+	var matching_colors = []
 	for color in Globals.minecraft_map_colors:
 		var cr = color[0].r
 		var cg = color[0].g
 		var cb = color[0].b
 		var color_diff = sqrt(abs(r - cr)*2 + abs(g - cg)*2 + abs(b - cb)*2)
-		if color_diff < minimum[0]:
-			minimum = [color_diff, Color(color[0][0], color[0][1], color[0][2], color[0][3]), color[1]]
-	return [minimum[1], minimum[2]]
-
-
-
-
-
-func _ready():
-#	print(list_files_in_directory("res://"))
-#	print("\n----\n")
-#	print(list_files_in_directory("res://minecraft_textures/"))
-#	var dir = Directory.new()
-#	dir.list_dir_begin()
-#
-	pass
-func list_files_in_directory(path):
-	var files = []
-	var dir = Directory.new()
-	dir.open(path)
-	dir.list_dir_begin()
-
-	while true:
-		var file = dir.get_next()
-		if file == "":
-			break
-		elif not file.begins_with("."):
-			files.append(file)
-
-	dir.list_dir_end()
-
-	return files
+		
+		color_diffs.append(color_diff)
+		matching_colors.append([color_diff, Color(color[0][0], color[0][1], color[0][2], color[0][3]), color[1]]) # color[1] är materialnamnen.
+		
+#		if color_diff < minimum[0]:
+#			if (not same_color_allowed) and color[0] == rgb: continue
+#			minimum = [color_diff, Color(color[0][0], color[0][1], color[0][2], color[0][3]), color[1]]
+	color_diffs.sort()
+	
+	
+	var result_colors = []
+	for diff in color_diffs:
+		var color
+		for c in matching_colors:
+			if c[0] == diff:
+				color = c
+		result_colors.append(color)#[matching_colors[1], matching_colors[2], color_diffs])
+	return [result_colors[0], result_colors[1], result_colors[2]]#[minimum[1], minimum[2]]
